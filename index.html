@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="./3S.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./3S.png">
   <link rel="apple-touch-icon" href="./3S.png" sizes="180x180">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="./3S.png">
+
   <title>3S - 報連相ジェネレーター</title>
 
-  <!-- Tailwind CSS (CDN) -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- HTMX -->
@@ -19,36 +21,60 @@
   <!-- hyperscript -->
   <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 
-  <!-- html2canvas & jsPDF (Client-side PDF/JPEG generation) -->
+  <!-- html2canvas & jsPDF -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-900">
+
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
 
   <!-- Header -->
   <header class="bg-blue-700 text-white p-4">
-    <h1 class="text-xl font-bold">3S - 報連相ジェネレーター</h1>
-    <p class="text-sm">負荷最小化・結論先行型（PREP × DESC × SDS × 5W3H）</p>
+    <div class="max-w-4xl mx-auto space-y-1">
+      <h1 class="text-xl font-bold">3S - 報連相ジェネレーター</h1>
+      <p class="text-sm">
+        負荷最小化・結論先行型（PREP × DESC × SDS × 5W3H）
+      </p>
+    </div>
   </header>
 
   <!-- Main -->
-  <main class="max-w-4xl mx-auto p-6 space-y-6">
+  <main class="flex-1 max-w-4xl mx-auto w-full p-4 sm:p-6 space-y-6">
 
     <!-- Purpose -->
-    <section class="bg-white p-4 rounded shadow">
-      <p class="text-sm text-gray-700">
+    <section class="bg-white p-4 sm:p-6 rounded shadow">
+      <p class="text-sm text-gray-700 leading-relaxed">
         本ツールは、神経発達症（ASD・ADHD 等）を含む精神障害・発達障害・知的障害・身体障害のある方が、
-        <strong>実際の就労環境でも通用する簡潔な報連相</strong>を身につけることを目的としています。
+        <strong>実際の就労環境でも通用する簡潔な報連相</strong>
+        を身につけることを目的としています。
       </p>
     </section>
 
+    <!-- External Link (HTMX) -->
+    <section class="bg-white p-4 sm:p-6 rounded shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <p class="text-sm text-gray-700">
+        上位概念ツール：
+        <span class="font-semibold">3M（自己表現支援アプリ）</span>
+      </p>
+
+      <button
+        class="border px-4 py-2 rounded text-sm hover:bg-gray-100 transition"
+        hx-get="https://uchida16104.github.io/3M"
+        hx-trigger="click"
+        hx-swap="none"
+        _="on click window.location.href='https://uchida16104.github.io/3M'"
+      >
+        3M を開く
+      </button>
+    </section>
+
     <!-- Input Form -->
-    <section class="bg-white p-6 rounded shadow space-y-4">
+    <section class="bg-white p-4 sm:p-6 rounded shadow space-y-4">
       <h2 class="font-semibold text-lg">入力</h2>
 
       <!-- Subject -->
-      <div class="flex gap-2">
-        <select id="subjectType" class="border rounded p-2 w-40">
+      <div class="flex flex-col sm:flex-row gap-2">
+        <select id="subjectType" class="border rounded p-2 w-full sm:w-48">
           <option>報告</option>
           <option>連絡</option>
           <option>相談</option>
@@ -59,7 +85,12 @@
           <option>重要連絡</option>
           <option>重要相談</option>
         </select>
-        <input id="subjectText" type="text" placeholder="件名" class="border rounded p-2 flex-1" />
+        <input
+          id="subjectText"
+          type="text"
+          placeholder="件名"
+          class="border rounded p-2 flex-1"
+        />
       </div>
 
       <!-- Core Fields -->
@@ -69,14 +100,14 @@
       <textarea id="request" class="border rounded p-2 w-full" rows="2" placeholder="要望（具体的な依頼・選択肢）"></textarea>
 
       <!-- Name & Email -->
-      <div class="flex gap-2">
+      <div class="flex flex-col sm:flex-row gap-2">
         <input id="name" type="text" placeholder="氏名" class="border rounded p-2 flex-1" />
         <input id="email" type="email" placeholder="メールアドレス（下書き用）" class="border rounded p-2 flex-1" />
       </div>
 
       <!-- Generate Button -->
       <button
-        class="bg-blue-600 text-white px-4 py-2 rounded"
+        class="bg-blue-600 text-white px-4 py-2 rounded w-full sm:w-auto"
         _="on click call generate()"
       >
         生成
@@ -84,11 +115,15 @@
     </section>
 
     <!-- Output -->
-    <section class="bg-white p-6 rounded shadow space-y-4">
+    <section class="bg-white p-4 sm:p-6 rounded shadow space-y-4">
       <h2 class="font-semibold text-lg">生成結果（コピー可能）</h2>
-      <pre id="output" class="bg-gray-100 p-4 rounded whitespace-pre-wrap"></pre>
 
-      <div class="flex gap-2">
+      <pre
+        id="output"
+        class="bg-gray-100 p-4 rounded whitespace-pre-wrap text-sm overflow-x-auto"
+      ></pre>
+
+      <div class="flex flex-col sm:flex-row gap-2">
         <button class="border px-3 py-2 rounded" _="on click call copyText()">コピー</button>
         <button class="border px-3 py-2 rounded" _="on click call exportPDF()">PDF生成</button>
         <button class="border px-3 py-2 rounded" _="on click call exportJPEG()">JPEG生成</button>
@@ -97,11 +132,6 @@
     </section>
 
   </main>
-
-  <!-- Footer -->
-  <footer class="text-center text-sm text-gray-500 p-4">
-    © Uchida16104 / 3M Project
-  </footer>
 
   <!-- Script -->
   <script>
@@ -136,7 +166,9 @@ ${name}`;
     }
 
     function copyText() {
-      navigator.clipboard.writeText(document.getElementById('output').textContent);
+      navigator.clipboard.writeText(
+        document.getElementById('output').textContent
+      );
     }
 
     async function exportPDF() {
@@ -158,9 +190,16 @@ ${name}`;
 
     function draftMail() {
       const email = document.getElementById('email').value;
-      const subject = document.getElementById('subjectType').value + ' ' + document.getElementById('subjectText').value;
-      const body = encodeURIComponent(document.getElementById('output').textContent);
-      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      const subject =
+        document.getElementById('subjectType').value +
+        ' ' +
+        document.getElementById('subjectText').value;
+      const body = encodeURIComponent(
+        document.getElementById('output').textContent
+      );
+
+      window.location.href =
+        `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
     }
   </script>
 

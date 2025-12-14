@@ -2,7 +2,7 @@
 
 # 3S
 
-## 概要
+## 🌱 概要
 
 **3S（読み：「スリーエス」）** は、
 
@@ -23,7 +23,7 @@
 
 ---
 
-## 3S の考え方
+## 💡 3S の考え方
 
 ### 1. Share（共有）
 
@@ -72,7 +72,7 @@
 
 ---
 
-## 本アプリの特徴
+## 🧩 本アプリの特徴
 
 * PREP法 / DESC法 / SDS法 / 5W3H を統合
 * 結論 → 事実 → 影響 → 要望 の固定構造
@@ -83,7 +83,7 @@
 
 ---
 
-## 支援・福祉・就労移行現場との高い親和性
+## 👥 支援・福祉・就労移行現場との高い親和性
 
 3S は、以下の現場で特に効果を発揮します。
 
@@ -92,7 +92,7 @@
 * 企業内障害者雇用
 * 定着支援・職場実習
 
-### 理由
+### 🖊️ 理由
 
 * 「できない理由」を説明させない
 * 「今の状態」と「必要な支援」を自然に言語化できる
@@ -103,7 +103,7 @@
 
 ---
 
-## 目的
+## 📖 目的
 
 本プロジェクトの最終目的は、
 
@@ -117,7 +117,7 @@
 
 ---
 
-## 想定される使い方
+## 💬 想定される使い方
 
 1. 実務・実習前に 3S を使って文章を作成
 2. 生成結果をそのまま提出・共有
@@ -128,12 +128,18 @@
 
 ---
 
-## ライセンス・開発者
+## 🔗 関連リンク
+
+<span><a href="https://github.com/Uchida16104/3M" style="text-decoration: none;">3M</a>（自己表現支援アプリ）</span>
+
+---
+
+## 📜 ライセンス・開発者
 <a href="https://github.com/Uchida16104/3S/blob/main/LICENSE" style="text-decoration: none;">MIT License</a> © 2025 <a href="https://hirotoshiuchida.onrender.com" style="text-decoration: none;">Hirotoshi Uchida</a><a href="https://github.com/Uchida16104" style="text-decoration: none;">(Uchida16104)</a>
 
 ---
 
-## 最後に
+## ❤️ 最後に
 
 3S は、
 「説明が苦手でも、仕事はできる」
